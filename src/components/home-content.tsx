@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type DiaryEntry, getMoodLabel } from "@/lib/entries";
+import { getMoodLabel } from "@/lib/entries";
 import { useStoredEntries } from "@/lib/use-stored-entries";
 
 const tabItems = [
@@ -14,14 +14,13 @@ const tabItems = [
 
 type HomeContentProps = {
   today: string;
-  sampleEntries: DiaryEntry[];
 };
 
-export function HomeContent({ today, sampleEntries }: HomeContentProps) {
+export function HomeContent({ today }: HomeContentProps) {
   const { entries } = useStoredEntries();
-  const allEntries = [...entries, ...sampleEntries];
-  const latestEntry = allEntries[0];
-  const letterCount = Math.max(entries.length, 1);
+  const latestEntry = entries[0];
+  const letterCount = entries.length;
+  const hasLetters = letterCount > 0;
 
   return (
     <main className="min-h-svh bg-background px-4 pt-6 pb-4 text-foreground sm:px-6">
@@ -38,7 +37,7 @@ export function HomeContent({ today, sampleEntries }: HomeContentProps) {
 
           <Link
             href="/entries"
-            aria-label={`편지 ${letterCount}개, 우편함 보기`}
+            aria-label={`내 편지 ${letterCount}통, 우편함 보기`}
             className="relative mt-2 flex size-12 shrink-0 items-center justify-center rounded-lg border border-transparent text-foreground transition hover:border-line hover:bg-surface focus:outline-none focus:ring-2 focus:ring-accent/35"
           >
             <BellIcon className="size-9" />
@@ -61,11 +60,18 @@ export function HomeContent({ today, sampleEntries }: HomeContentProps) {
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-[1.22rem] font-bold leading-snug">
-                편지 <span className="text-accent-strong">{letterCount}</span>
-                통이 있어요
+                {hasLetters ? (
+                  <>
+                    내가 봉인한 편지{" "}
+                    <span className="text-accent-strong">{letterCount}</span>
+                    통이 있어요
+                  </>
+                ) : (
+                  "아직 봉인한 편지가 없어요"
+                )}
               </p>
               <p className="mt-2 text-lg font-medium text-foreground/70">
-                조심스럽게 뜯어볼까요?
+                {hasLetters ? "조심스럽게 뜯어볼까요?" : "첫 편지를 써볼까요?"}
               </p>
             </div>
             <ChevronRightIcon className="size-8 shrink-0 text-foreground/55" />
@@ -79,11 +85,14 @@ export function HomeContent({ today, sampleEntries }: HomeContentProps) {
           <div className="min-w-0">
             <p className="text-sm font-bold text-accent-strong">오늘의 상태</p>
             <p className="mt-3 text-2xl font-extrabold leading-tight">
-              편지를 쓸 준비가 됐어요
+              {hasLetters
+                ? "편지를 이어 쓸 준비가 됐어요"
+                : "첫 편지를 쓸 준비가 됐어요"}
             </p>
             <p className="mt-3 max-w-52 text-base font-medium leading-6 text-foreground/65">
-              최근 기분은 {getMoodLabel(latestEntry.mood)}이에요. 오늘의 마음도
-              남겨보세요.
+              {latestEntry
+                ? `최근 편지의 기분은 ${getMoodLabel(latestEntry.mood)}이에요. 오늘의 마음도 남겨보세요.`
+                : "아직 봉인한 편지는 없어요. 오늘의 마음을 편지로 남겨보세요."}
             </p>
           </div>
 
@@ -109,21 +118,6 @@ export function HomeContent({ today, sampleEntries }: HomeContentProps) {
               편지 쓰기
             </span>
             <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-white/18 shadow-inner">
-              <ChevronRightIcon className="size-9" />
-            </span>
-          </Link>
-
-          <Link
-            href="/entries/new?stamp=basic"
-            className="flex min-h-24 items-center gap-5 rounded-lg border border-line bg-surface px-6 py-4 text-foreground shadow-sm transition hover:border-[#b6b58c] focus:outline-none focus:ring-2 focus:ring-[#a8b18c]/45"
-          >
-            <span className="flex size-16 shrink-0 items-center justify-center rounded-lg border border-[#e1d6b8] bg-white text-[#7b8b62] shadow-sm">
-              <StampIcon className="size-12" />
-            </span>
-            <span className="min-w-0 flex-1 text-[1.45rem] font-extrabold leading-tight min-[390px]:text-[1.7rem]">
-              기본 우표 붙이기
-            </span>
-            <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-[#9fac83] text-white shadow-sm">
               <ChevronRightIcon className="size-9" />
             </span>
           </Link>
@@ -324,34 +318,4 @@ function HomeIcon({ className }: { className?: string }) {
 
 function MailIcon({ className }: { className?: string }) {
   return <EnvelopeIcon className={className} />;
-}
-
-function StampIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className={className}
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M6 4.5h12v2l1.5 1.5L18 9.5v2l1.5 1.5L18 14.5v2l1.5 1.5-1.5 1.5H6L4.5 18 6 16.5v-2L4.5 13 6 11.5v-2L4.5 8 6 6.5v-2Z"
-        fill="currentColor"
-        opacity=".12"
-      />
-      <path
-        d="M6 4.5h12v2l1.5 1.5L18 9.5v2l1.5 1.5L18 14.5v2l1.5 1.5-1.5 1.5H6L4.5 18 6 16.5v-2L4.5 13 6 11.5v-2L4.5 8 6 6.5v-2Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M9 12.2c.6 1 1.6 1.7 3 1.7s2.4-.7 3-1.7M9.4 9.6h.01M14.6 9.6h.01"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.7"
-      />
-    </svg>
-  );
 }

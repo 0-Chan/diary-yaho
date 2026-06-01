@@ -67,13 +67,7 @@ export function NewEntryForm() {
           <h1 className="text-center text-2xl font-bold tracking-normal">
             편지 쓰기
           </h1>
-          <button
-            type="button"
-            aria-label="도움말"
-            className="flex size-10 items-center justify-center justify-self-end rounded-full border-2 border-[#34251f] text-xl font-bold"
-          >
-            ?
-          </button>
+          <span aria-hidden="true" />
         </header>
 
         <section className="letter-card paper-surface rounded-lg border border-[#d4c5ad] px-5 pt-12 pb-5 shadow-[0_12px_28px_rgba(73,50,35,0.12)]">
@@ -135,21 +129,6 @@ export function NewEntryForm() {
         </section>
 
         <section className="grid gap-3">
-          <div className="flex items-center justify-between gap-4">
-            <h2 className="text-lg font-bold">사진 추가</h2>
-            <span className="text-lg font-bold text-[#8d8278]">0/3</span>
-          </div>
-          <button
-            type="button"
-            aria-disabled="true"
-            aria-label="사진 추가"
-            className="flex size-16 items-center justify-center rounded-lg border-2 border-dashed border-[#d5c7b6] bg-[#fffaf0]/60 text-[#6a5b4d]"
-          >
-            <CameraIcon />
-          </button>
-        </section>
-
-        <section className="grid gap-3">
           <h2 className="text-lg font-bold">공개 설정</h2>
           <fieldset className="grid grid-cols-2 overflow-hidden rounded-[22px] border border-[#d9cbb8] bg-[#fffaf0]">
             <legend className="sr-only">공개 설정</legend>
@@ -190,24 +169,6 @@ export function NewEntryForm() {
         </button>
       </form>
     </main>
-  );
-}
-
-function CameraIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="size-8"
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-    >
-      <path d="M5 8h3l1.5-2h5L16 8h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z" />
-      <circle cx="12" cy="13.5" r="3" />
-    </svg>
   );
 }
 

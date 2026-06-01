@@ -22,7 +22,7 @@ export function EntryDetail({ entryId, sampleEntry }: EntryDetailProps) {
     return (
       <main className="min-h-screen bg-background px-5 py-6 text-foreground sm:px-8">
         <div className="mx-auto w-full max-w-3xl rounded-lg border border-line bg-surface p-5 shadow-sm">
-          일기를 불러오는 중입니다.
+          편지를 불러오는 중입니다.
         </div>
       </main>
     );
@@ -37,22 +37,22 @@ export function EntryDetail({ entryId, sampleEntry }: EntryDetailProps) {
               href="/entries"
               className="text-sm font-semibold text-accent-strong"
             >
-              모든 일기
+              우편함
             </Link>
             <h1 className="mt-5 text-3xl font-semibold">
-              일기를 찾을 수 없습니다
+              편지를 찾을 수 없습니다
             </h1>
           </header>
 
           <div className="rounded-lg border border-line bg-surface p-5 shadow-sm">
             <p className="text-base leading-7 text-foreground/75">
-              저장된 브라우저가 다르거나 삭제된 일기입니다.
+              저장된 브라우저가 다르거나 삭제된 편지입니다.
             </p>
             <Link
               href="/entries/new"
               className="mt-5 inline-flex rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-white"
             >
-              새 일기 쓰기
+              편지 쓰기
             </Link>
           </div>
         </article>
@@ -68,7 +68,7 @@ export function EntryDetail({ entryId, sampleEntry }: EntryDetailProps) {
             href="/entries"
             className="text-sm font-semibold text-accent-strong"
           >
-            모든 일기
+            우편함
           </Link>
           <p className="mt-5 text-sm text-foreground/60">{entry.dateLabel}</p>
           <h1 className="mt-2 text-3xl font-semibold">{entry.title}</h1>

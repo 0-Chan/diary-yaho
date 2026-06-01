@@ -15,7 +15,7 @@ export async function generateMetadata({
   const entry = findSampleEntry(entryId);
 
   return {
-    title: entry?.title ?? "일기",
+    title: entry?.title ?? "편지",
   };
 }
 

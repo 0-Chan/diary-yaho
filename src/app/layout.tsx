@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     default: "Diary Yaho",
     template: "%s | Diary Yaho",
   },
-  description: "하루의 감정과 기록을 남기는 개인 일기장",
+  description: "하루의 마음을 편지로 남기는 개인 우편함",
   applicationName: "Diary Yaho",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0f766e",
+  themeColor: "#dc5f4b",
 };
 
 export default function RootLayout({

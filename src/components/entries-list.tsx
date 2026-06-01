@@ -20,13 +20,13 @@ export function EntriesList({ sampleEntries }: EntriesListProps) {
             <Link href="/" className="text-sm font-semibold text-accent-strong">
               Diary Yaho
             </Link>
-            <h1 className="mt-2 text-3xl font-semibold">모든 일기</h1>
+            <h1 className="mt-2 text-3xl font-semibold">우편함</h1>
           </div>
           <Link
             href="/entries/new"
             className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white"
           >
-            새 일기
+            새 편지
           </Link>
         </header>
 
