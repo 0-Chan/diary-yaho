@@ -1,0 +1,39 @@
+{
+  "source": "IMG_5308.gif",
+  "originalSize": {
+    "width": 117,
+    "height": 89
+  },
+  "frameCount": 7,
+  "loop": "infinite",
+  "background": "white (#FFFFFF)",
+  "frameDurationMs": [100, 100, 100, 100, 100, 100, 100],
+  "note": "The source GIF reported 0 ms frame delays, so the exported animations use 100 ms per frame for browser-stable playback.",
+  "files": {
+    "animatedGif": [
+      "cat-walk-white.gif",
+      "cat-walk-white@2x.gif",
+      "cat-walk-white@3x.gif"
+    ],
+    "animatedWebp": [
+      "cat-walk-white.webp",
+      "cat-walk-white@2x.webp",
+      "cat-walk-white@3x.webp"
+    ],
+    "staticPng": [
+      "cat-walk-white.png",
+      "cat-walk-white@2x.png",
+      "cat-walk-white@3x.png"
+    ],
+    "sprite": "cat-walk-white-sprite.png",
+    "frames": [
+      "frames/cat-walk-white-frame-00.png",
+      "frames/cat-walk-white-frame-01.png",
+      "frames/cat-walk-white-frame-02.png",
+      "frames/cat-walk-white-frame-03.png",
+      "frames/cat-walk-white-frame-04.png",
+      "frames/cat-walk-white-frame-05.png",
+      "frames/cat-walk-white-frame-06.png"
+    ]
+  }
+}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { sampleEntries } from "@/lib/sample-entries";
 
@@ -14,11 +15,25 @@ export default function Home() {
     <main className="min-h-screen bg-background px-5 py-6 text-foreground sm:px-8">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-8">
         <header className="flex flex-wrap items-center justify-between gap-4 border-line border-b pb-5">
-          <div>
-            <p className="text-accent-strong text-sm font-semibold">{today}</p>
-            <h1 className="mt-1 text-3xl font-semibold tracking-normal">
-              Diary Yaho
-            </h1>
+          <div className="flex items-center gap-4">
+            <div className="flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-line bg-white">
+              <Image
+                src="/assets/cat-walk-white@3x.png"
+                alt="Diary Yaho 고양이 마스코트"
+                width={96}
+                height={73}
+                priority
+                className="h-auto w-24"
+              />
+            </div>
+            <div>
+              <p className="text-accent-strong text-sm font-semibold">
+                {today}
+              </p>
+              <h1 className="mt-1 text-3xl font-semibold tracking-normal">
+                Diary Yaho
+              </h1>
+            </div>
           </div>
           <nav className="flex items-center gap-2">
             <Link
