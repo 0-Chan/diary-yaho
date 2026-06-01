@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Diary Yaho icon">
+  <rect width="512" height="512" rx="112" fill="#0f766e" />
+  <path d="M154 116h192c28 0 50 22 50 50v236c0 16-14 30-30 30H154c-22 0-40-18-40-40V156c0-22 18-40 40-40Z" fill="#fff7ed" />
+  <path d="M154 116h40v316h-40c-22 0-40-18-40-40V156c0-22 18-40 40-40Z" fill="#f97316" />
+  <path d="M238 192h94M238 248h94M238 304h66" stroke="#0f766e" stroke-width="24" stroke-linecap="round" />
+</svg>
