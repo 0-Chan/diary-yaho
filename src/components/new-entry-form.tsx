@@ -4,6 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { type FormEvent, useMemo, useState } from "react";
 import {
+  EntryWorkspace,
+  PageHeader,
+  secondaryActionClassName,
+  textLinkClassName,
+  WorkspaceRailPanel,
+} from "@/components/entry-workspace";
+import {
   createDiaryEntry,
   type MoodId,
   moodOptions,
@@ -51,25 +58,35 @@ export function NewEntryForm() {
   };
 
   return (
-    <main className="min-h-screen bg-[#fbf4e8] px-4 py-5 text-[#34251f] sm:px-6">
-      <form
-        onSubmit={handleSubmit}
-        className="mx-auto flex w-full max-w-[430px] flex-col gap-6"
-      >
-        <header className="grid grid-cols-[44px_1fr_44px] items-center">
-          <Link
-            href="/"
-            aria-label="닫기"
-            className="flex size-11 items-center justify-center text-4xl leading-none text-[#34251f]"
-          >
-            ×
-          </Link>
-          <h1 className="text-center text-2xl font-bold tracking-normal">
-            편지 쓰기
-          </h1>
-          <span aria-hidden="true" />
-        </header>
-
+    <EntryWorkspace
+      mobileHeader={
+        <PageHeader
+          eyebrow={
+            <Link href="/" className={textLinkClassName}>
+              Diary Yaho
+            </Link>
+          }
+          title="편지 쓰기"
+        />
+      }
+      rail={
+        <WorkspaceRailPanel
+          actions={
+            <Link href="/entries" className={secondaryActionClassName}>
+              우편함
+            </Link>
+          }
+          eyebrow={
+            <Link href="/" className={textLinkClassName}>
+              Diary Yaho
+            </Link>
+          }
+          meta="새 편지"
+          title="편지 쓰기"
+        />
+      }
+    >
+      <form onSubmit={handleSubmit} className="grid gap-6">
         <section className="letter-card paper-surface rounded-lg border border-[#d4c5ad] px-5 pt-12 pb-5 shadow-[0_12px_28px_rgba(73,50,35,0.12)]">
           <label htmlFor="entry-title" className="sr-only">
             제목
@@ -168,7 +185,7 @@ export function NewEntryForm() {
           봉인하기
         </button>
       </form>
-    </main>
+    </EntryWorkspace>
   );
 }
 

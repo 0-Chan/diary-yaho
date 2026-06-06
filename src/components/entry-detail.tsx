@@ -2,6 +2,16 @@
 
 import Link from "next/link";
 import {
+  EntryWorkspace,
+  moodPillClassName,
+  PageHeader,
+  primaryActionClassName,
+  SurfaceCard,
+  secondaryActionClassName,
+  textLinkClassName,
+  WorkspaceRailPanel,
+} from "@/components/entry-workspace";
+import {
   type DiaryEntry,
   getMoodLabel,
   getVisibilityLabel,
@@ -20,74 +30,126 @@ export function EntryDetail({ entryId, sampleEntry }: EntryDetailProps) {
 
   if (!entry && !isLoaded) {
     return (
-      <main className="min-h-screen bg-background px-5 py-6 text-foreground sm:px-8">
-        <div className="mx-auto w-full max-w-3xl rounded-lg border border-line bg-surface p-5 shadow-sm">
-          편지를 불러오는 중입니다.
-        </div>
-      </main>
+      <EntryWorkspace
+        mobileHeader={
+          <PageHeader
+            eyebrow={
+              <Link href="/entries" className={textLinkClassName}>
+                우편함
+              </Link>
+            }
+            title="편지"
+          />
+        }
+        rail={
+          <WorkspaceRailPanel
+            eyebrow={
+              <Link href="/entries" className={textLinkClassName}>
+                우편함
+              </Link>
+            }
+            meta="불러오는 중"
+            title="편지"
+          />
+        }
+      >
+        <SurfaceCard>편지를 불러오는 중입니다.</SurfaceCard>
+      </EntryWorkspace>
     );
   }
 
   if (!entry) {
     return (
-      <main className="min-h-screen bg-background px-5 py-6 text-foreground sm:px-8">
-        <article className="mx-auto flex w-full max-w-3xl flex-col gap-6">
-          <header className="border-line border-b pb-5">
-            <Link
-              href="/entries"
-              className="text-sm font-semibold text-accent-strong"
-            >
-              우편함
-            </Link>
-            <h1 className="mt-5 text-3xl font-semibold">
-              편지를 찾을 수 없습니다
-            </h1>
-          </header>
-
-          <div className="rounded-lg border border-line bg-surface p-5 shadow-sm">
-            <p className="text-base leading-7 text-foreground/75">
-              저장된 브라우저가 다르거나 삭제된 편지입니다.
-            </p>
-            <Link
-              href="/entries/new"
-              className="mt-5 inline-flex rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-white"
-            >
-              편지 쓰기
-            </Link>
-          </div>
-        </article>
-      </main>
+      <EntryWorkspace
+        mobileHeader={
+          <PageHeader
+            eyebrow={
+              <Link href="/entries" className={textLinkClassName}>
+                우편함
+              </Link>
+            }
+            title="편지를 찾을 수 없습니다"
+          />
+        }
+        rail={
+          <WorkspaceRailPanel
+            actions={
+              <Link href="/entries/new" className={primaryActionClassName}>
+                편지 쓰기
+              </Link>
+            }
+            eyebrow={
+              <Link href="/entries" className={textLinkClassName}>
+                우편함
+              </Link>
+            }
+            title="편지를 찾을 수 없습니다"
+          />
+        }
+      >
+        <SurfaceCard>
+          <p className="text-base leading-7 text-foreground/75">
+            저장된 브라우저가 다르거나 삭제된 편지입니다.
+          </p>
+          <Link
+            href="/entries/new"
+            className="mt-5 inline-flex rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-white"
+          >
+            편지 쓰기
+          </Link>
+        </SurfaceCard>
+      </EntryWorkspace>
     );
   }
 
-  return (
-    <main className="min-h-screen bg-background px-5 py-6 text-foreground sm:px-8">
-      <article className="mx-auto flex w-full max-w-3xl flex-col gap-6">
-        <header className="border-line border-b pb-5">
-          <Link
-            href="/entries"
-            className="text-sm font-semibold text-accent-strong"
-          >
-            우편함
-          </Link>
-          <p className="mt-5 text-sm text-foreground/60">{entry.dateLabel}</p>
-          <h1 className="mt-2 text-3xl font-semibold">{entry.title}</h1>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <span className="inline-flex rounded-full bg-surface-muted px-3 py-1 text-xs font-semibold">
-              {getMoodLabel(entry.mood)}
-            </span>
-            <span className="inline-flex rounded-full bg-surface-muted px-3 py-1 text-xs font-semibold">
-              {getVisibilityLabel(entry.visibility)}
-            </span>
-          </div>
-        </header>
+  const badges = (
+    <div className="flex flex-wrap gap-2">
+      <span className={moodPillClassName}>{getMoodLabel(entry.mood)}</span>
+      <span className={moodPillClassName}>
+        {getVisibilityLabel(entry.visibility)}
+      </span>
+    </div>
+  );
 
-        <div className="rounded-lg border border-line bg-surface p-5 shadow-sm">
+  return (
+    <EntryWorkspace
+      mobileHeader={
+        <PageHeader
+          badge={badges}
+          eyebrow={
+            <Link href="/entries" className={textLinkClassName}>
+              우편함
+            </Link>
+          }
+          meta={entry.dateLabel}
+          title={entry.title}
+        />
+      }
+      rail={
+        <WorkspaceRailPanel
+          actions={
+            <Link href="/entries" className={secondaryActionClassName}>
+              목록으로
+            </Link>
+          }
+          badge={badges}
+          eyebrow={
+            <Link href="/entries" className={textLinkClassName}>
+              우편함
+            </Link>
+          }
+          meta={entry.dateLabel}
+          title={entry.title}
+        />
+      }
+    >
+      <article>
+        <SurfaceCard>
           <p className="whitespace-pre-line text-base leading-8 text-foreground/80">
             {entry.body}
           </p>
-        </div>
+        </SurfaceCard>
       </article>
-    </main>
+    </EntryWorkspace>
   );
 }
