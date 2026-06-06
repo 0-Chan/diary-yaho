@@ -12,7 +12,7 @@ export default function OfflinePage() {
         <p className="text-sm font-semibold text-accent-strong">오프라인</p>
         <h1 className="mt-3 text-2xl font-semibold">연결을 확인해 주세요</h1>
         <p className="mt-4 leading-7 text-foreground/70">
-          네트워크가 돌아오면 일기 목록과 작성 화면을 다시 불러올 수 있습니다.
+          네트워크가 돌아오면 우편함과 편지 쓰기 화면을 다시 불러올 수 있습니다.
         </p>
         <Link
           href="/"

@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f7f2;
-  --foreground: #18211f;
-  --surface: #ffffff;
-  --surface-muted: #ecf4f1;
-  --accent: #0f766e;
-  --accent-strong: #0a5f59;
-  --line: #dbe4df;
+  --background: #f8efe0;
+  --foreground: #302116;
+  --surface: #fffaf1;
+  --surface-muted: #eef0d9;
+  --accent: #dc5f4b;
+  --accent-strong: #a94434;
+  --line: #eadbc3;
   --font-sans:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
@@ -26,12 +26,14 @@
 
 html {
   background: var(--background);
+  min-height: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  min-height: 100%;
 }
 
 a {
@@ -43,4 +45,68 @@ button,
 input,
 textarea {
   font: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+.paper-surface {
+  background-color: #fff8ec;
+  background-image:
+    radial-gradient(
+      circle at 18% 18%,
+      rgba(148, 119, 80, 0.07) 0 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 72% 42%,
+      rgba(148, 119, 80, 0.05) 0 1px,
+      transparent 1px
+    );
+  background-size:
+    18px 18px,
+    24px 24px;
+}
+
+.letter-card {
+  overflow: hidden;
+  position: relative;
+}
+
+.letter-card::before {
+  background: repeating-linear-gradient(
+    135deg,
+    #ef795d 0 22px,
+    #fff8ec 22px 44px,
+    #86aee0 44px 66px,
+    #fff8ec 66px 88px
+  );
+  border-bottom: 1px solid rgba(93, 68, 48, 0.18);
+  content: "";
+  height: 14px;
+  inset: 0 0 auto;
+  position: absolute;
+}
+
+.lined-paper {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 42px,
+    rgba(92, 68, 48, 0.12) 43px,
+    transparent 44px
+  );
+}
+
+.stamp-tile {
+  background-image: radial-gradient(
+    circle at 0 0,
+    transparent 0 4px,
+    rgba(255, 250, 240, 0.96) 4px
+  );
 }

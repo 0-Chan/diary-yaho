@@ -4,12 +4,12 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Diary Yaho",
     short_name: "Yaho",
-    description: "하루의 감정과 기록을 남기는 개인 일기장",
+    description: "하루의 마음을 편지로 남기는 개인 우편함",
     start_url: "/",
     scope: "/",
     display: "standalone",
-    background_color: "#f6f7f2",
-    theme_color: "#0f766e",
+    background_color: "#f8efe0",
+    theme_color: "#dc5f4b",
     categories: ["lifestyle", "productivity"],
     icons: [
       {
